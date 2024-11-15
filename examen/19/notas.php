@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Calcular la nota media
     if (isset($_POST['media'])) {
+        
         if ($dni && $asignatura) {
             $stmt = $pdo->prepare("SELECT AVG(nota) as nota_media FROM notas WHERE dni = ? AND asignatura = ?");
             $stmt->bind_param("ss", $dni, $asignatura);

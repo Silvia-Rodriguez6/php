@@ -43,7 +43,8 @@
     <a href="sobrecarga/index.php">sobrecarga</a>">ficheros/index</a>"</a>
     <a href="examen/19/index.php">examen19</a>">ficheros/index</a>"</a>
     <a href="examen/21/index.php">examen21</a>">ficheros/index</a>"</a>
-    <a href="examen/tienda/index.php">examen21</a>">ficheros/index</a>"</a>
+    <a href="examen/tienda/index.php">tienda</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria/index.php">fruteria</a>">ficheros/index</a>"</a>
   </body>
   </body>
 

@@ -1,6 +1,20 @@
-<?php
+<<?php
 require_once 'conexion.php'; // Incluir la clase de conexión
 
+
+// Obtener la conexión
+$conexionBD = Conexion::obtenerConexion();
+
+// Verificar conexión y existencia de la tabla
+echo "Conexión exitosa a la base de datos.<br>";
+$sql = "SHOW TABLES LIKE 'precios1'";
+$result = $conexionBD->SetConsulta($sql);
+
+if ($result) {
+    echo "La tabla 'precios1' existe en la base de datos.<br>";
+} else {
+    die("La tabla 'precios1' NO existe en la base de datos. Asegúrate de crearla antes de continuar.");
+}
 // Obtener la conexión
 $conexionBD = Conexion::obtenerConexion();
 ?>
@@ -40,7 +54,7 @@ $conexionBD = Conexion::obtenerConexion();
             $Precio = filter_input(INPUT_POST, 'Precio', FILTER_VALIDATE_FLOAT);
             $Temporada = filter_input(INPUT_POST, 'Temporada');
             if ($NombreFruta && $Precio && $Temporada) {
-                $sql = "INSERT INTO precios (fruta, precio, temporada) VALUES ('$NombreFruta', '$Precio', '$Temporada')";
+                $sql = "INSERT INTO precios1 (fruta, precio, temporada) VALUES ('$NombreFruta', '$Precio', '$Temporada')";
                 $conexionBD->SetConsulta($sql);
             } else {
                 echo "Por favor, complete todos los campos.<br>";
@@ -48,7 +62,7 @@ $conexionBD = Conexion::obtenerConexion();
         }
 
         if (isset($_POST['FrutasOrdenadas'])) {
-            $sql = "SELECT fruta, precio FROM precios ORDER BY precio ASC";
+            $sql = "SELECT fruta, precio FROM precios1 ORDER BY precio ASC";
             $Resultado = $conexionBD->SetConsulta($sql);
             if ($Resultado) {
                 foreach ($Resultado as $fila) {
@@ -61,7 +75,7 @@ $conexionBD = Conexion::obtenerConexion();
         }
 
         if (isset($_POST['filtroA'])) {
-            $sql = "SELECT fruta, precio FROM precios WHERE precio > 1.5";
+            $sql = "SELECT fruta, precio FROM precios1 WHERE precio > 1.5";
             $Resultado = $conexionBD->SetConsulta($sql);
             if ($Resultado) {
                 foreach ($Resultado as $fila) {
@@ -75,7 +89,7 @@ $conexionBD = Conexion::obtenerConexion();
     }
 
     if (isset($_POST['filtroB'])) {
-        $sql = "SELECT fruta, precio, temporada FROM precios WHERE temporada = 'otoño'";
+        $sql = "SELECT fruta, precio, temporada FROM precios1 WHERE temporada = 'otoño'";
         $Resultado = $conexionBD->SetConsulta($sql);
         if ($Resultado) {
             foreach ($Resultado as $fila) {
@@ -88,7 +102,7 @@ $conexionBD = Conexion::obtenerConexion();
     }
 
     if (isset($_POST['filtroC'])) {
-        $sql = "SELECT fruta, precio, temporada FROM precios WHERE temporada = 'otoño' OR temporada = 'anual'";
+        $sql = "SELECT fruta, precio, temporada FROM precios1 WHERE temporada = 'otoño' OR temporada = 'anual'";
         $Resultado = $conexionBD->SetConsulta($sql);
         if ($Resultado) {
             foreach ($Resultado as $fila) {
@@ -101,7 +115,7 @@ $conexionBD = Conexion::obtenerConexion();
     }
 
     if (isset($_POST['filtroD'])) {
-        $sql = "SELECT fruta, precio, temporada FROM precios WHERE precio < 0.5 AND temporada = 'anual'";
+        $sql = "SELECT fruta, precio, temporada FROM precios1 WHERE precio < 0.5 AND temporada = 'anual'";
         $Resultado = $conexionBD->SetConsulta($sql);
         if ($Resultado) {
             foreach ($Resultado as $fila) {

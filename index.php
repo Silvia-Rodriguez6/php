@@ -45,8 +45,17 @@
     <a href="examen/21/index.php">examen21</a>">ficheros/index</a>"</a>
     <a href="examen/tienda/index.php">tienda</a>">ficheros/index</a>"</a>
     <a href="examen/fruteria/index.php">fruteria</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria/listar_fruta.php">fruteria</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria/nueva_fruta.php">nuevafruta</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria/guardar_fruta.php">guardarfruta</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria/borrar_fruta.php">borrarfruta</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria/editar_fruta.php">borrarfruta</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria1/organizadorFruta.php">organizadorFruta</a>">ficheros/index</a>"</a>
+    <a href="examen/fruteria1/index.php">indexFruta</a>">ficheros/index</a>"</a>
     <a href="examen/baloncesto/index.php">baloncesto</a>">ficheros/index</a>"</a>
-    
+    <a href="examen/tienda/index.php">tienda</a>">ficheros/index</a>"</a>
+    <a href="examen/clinica/index.php">clinica</a>">ficheros/index</a>"</a>
+    <a href="examen/hotel/index.php">hotel</a>">ficheros/index</a>"</a>
   </body>
   </body>
 

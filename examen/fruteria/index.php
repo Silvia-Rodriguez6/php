@@ -9,15 +9,15 @@
     <form action="index.php" method="post">
         <p>
             <label for="TextNombre">Nombre:</label>
-            <input type="text" name="Nombre" id="TextNombre" placeholder="Nombre" required>
+            <input type="text" name="Nombre" id="TextNombre" placeholder="Nombre">
         </p>
         <p>
             <label for="TextPrecio">Precio:</label>
-            <input type="text" name="Precio" id="TextPrecio" placeholder="€/Kg" required>
+            <input type="text" name="Precio" id="TextPrecio" placeholder="€/Kg">
         </p>
         <p>
             <label for="TextTemporada">Temporada:</label>
-            <input type="text" name="Temporada" id="TextTemporada" placeholder="Estación del año" required>
+            <input type="text" name="Temporada" id="TextTemporada" placeholder="Estación del año">
         </p>
         <input type="submit" name="Crear" value="Crear">
         <input type="submit" name="FrutasOrdenadas" value="Ver Frutas Ordenadas">
@@ -28,35 +28,28 @@
     </form>
 
     <?php
-    // Incluir clase conexión
+    // Clase de conexión
     class Conexion {
-
         private $Servidor;
         private $Usuario;
         private $Pass;
         private $NombreBD;
         private $ComandoConexion;
 
-        // Constructor
         function __construct($servidor, $usuario, $pass, $nombreBD) {
             $this->Servidor = $servidor;
             $this->Usuario = $usuario;
             $this->Pass = $pass;
             $this->NombreBD = $nombreBD;
-
-            // Conectar a la base de datos
             $this->ComandoConexion = new mysqli($servidor, $usuario, $pass, $nombreBD);
-
             if ($this->ComandoConexion->connect_errno) {
                 die("Error de conexión a la BD (" . $this->ComandoConexion->connect_errno . "): " . $this->ComandoConexion->connect_error);
             }
         }
 
-        // Método para ejecutar consultas
         public function SetConsulta($consulta) {
             $Resultado = false;
             $PrimerComando = strtoupper(strtok(trim($consulta), " "));
-
             if (!$this->ComandoConexion) {
                 echo "Conexión con BD perdida";
                 return false;
@@ -79,7 +72,7 @@
                 case 'DELETE':
                     if ($this->ComandoConexion->query($consulta) === TRUE) {
                         $Resultado = true;
-                        echo "Consulta ejecutada correctamente: $PrimerComando<br>";
+                        echo "Consulta ejecutada correctamente.<br>";
                     } else {
                         echo "Error en la consulta: " . $this->ComandoConexion->error . "<br>";
                     }
@@ -93,7 +86,6 @@
             return $Resultado;
         }
 
-        // Método para cerrar la conexión
         public function cerrarBD() {
             if ($this->ComandoConexion) {
                 $this->ComandoConexion->close();
@@ -104,17 +96,21 @@
     // Crear la conexión
     $conexionBD = new Conexion("127.0.0.1", "mariadb", "mariadb", "mariadb");
 
-    // Obtener datos del formulario
-    $NombreFruta = filter_input(INPUT_POST, 'Nombre');
-    $Precio = filter_input(INPUT_POST, 'Precio', FILTER_VALIDATE_FLOAT);
-    $Temporada = filter_input(INPUT_POST, 'Temporada');
-
+    // Procesar el formulario según el botón presionado
     if (isset($_POST['Crear'])) {
-        $sql = "INSERT INTO precios (fruta, precio, temporada) VALUES ('$NombreFruta', '$Precio', '$Temporada')";
-        if ($conexionBD->SetConsulta($sql)) {
-            echo "Fruta añadida correctamente.<br>";
+        // Validar solo si el botón "Crear" fue presionado
+        $NombreFruta = filter_input(INPUT_POST, 'Nombre');
+        $Precio = filter_input(INPUT_POST, 'Precio', FILTER_VALIDATE_FLOAT);
+        $Temporada = filter_input(INPUT_POST, 'Temporada');
+        if ($NombreFruta && $Precio && $Temporada) {
+            $sql = "INSERT INTO precios (fruta, precio, temporada) VALUES ('$NombreFruta', '$Precio', '$Temporada')";
+            if ($conexionBD->SetConsulta($sql)) {
+                echo "Fruta añadida correctamente.<br>";
+            } else {
+                echo "Error al insertar la fruta en la base de datos.<br>";
+            }
         } else {
-            echo "Error al insertar la fruta en la base de datos.<br>";
+            echo "Por favor, complete todos los campos para crear una fruta.<br>";
         }
     }
 

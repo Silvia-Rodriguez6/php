@@ -74,22 +74,24 @@ $conexion = new Conexion("127.0.0.1", "mariadb", "mariadb", "mariadb");
             }
         }
         
-        
 
         if (isset($_POST['calcular_ingresos'])) {
-            // Consulta para contar la cantidad total de pacientes masculinos y femeninos
-            $sql = "SELECT sexo, COUNT(*) AS total_cantidad 
-                    FROM pacientes
-                    GROUP BY sexo";
-            $Resultado = $conexion->SetConsulta($sql);
+            $FechaInicio = filter_input(INPUT_POST, 'fecha_inicio');
+            $FechaFin = filter_input(INPUT_POST, 'fecha_fin');
         
-            if ($Resultado) {
-                foreach ($Resultado as $fila) {
-                    echo "Sexo: " . htmlspecialchars($fila['sexo']) . "<br>";
-                    echo "Cantidad total de pacientes: " . htmlspecialchars($fila['total_cantidad']) . "<br><br>";
+            if ($FechaInicio && $FechaFin) {
+                $sql = "SELECT SUM(total_pago) AS ingresos_totales FROM reservas 
+                        WHERE fecha_inicio >= '$FechaInicio' AND fecha_fin <= '$FechaFin'";
+                $Resultado = $conexion->SetConsulta($sql);
+        
+                if ($Resultado) {
+                    $IngresosTotales = $Resultado[0]['ingresos_totales'] ?? 0;
+                    echo "Ingresos totales del período ($FechaInicio a $FechaFin) € $IngresosTotales";
+                } else {
+                    echo "No se encontraron reservas en el período especificado.";
                 }
             } else {
-                echo "No se encontraron pacientes en la base de datos.<br>";
+                echo "Por favor, selecciona un rango de fechas válido.";
             }
         }
         

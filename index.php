@@ -28,6 +28,7 @@
     <a href="practica3_17/login.html">practica3_17</a><br/>
     <a href="practica3_18/principal.php">practica3_18</a><br/>
     <a href="practica3_19/principal.php">practica3_19</a><br/>
+    <a href="practica3_19/principal.php">practica3_19</a><br/>
     <a href="practica3_20/index.php">practica3_20</a><br/>
     <a href="practica4/index.php">practica4</a><br/>
     <a href="objetos1/objetos1_1.php">objetos1_1</a>
@@ -42,7 +43,9 @@
     <a href="repasoObejtos/ejercicio3_3.php">repasoObejtos/ejercicio3_3</a>
     <a href="sobrecarga/index.php">sobrecarga</a>">ficheros/index</a>"</a>
     <a href="examen/19/index.php">examen19</a>">ficheros/index</a>"</a>
+    <a href="examen/119/index.php">examen119</a>">ficheros/index</a>"</a>
     <a href="examen/21/index.php">examen21</a>">ficheros/index</a>"</a>
+    <a href="examen/221/index.php">examen221</a>">ficheros/index</a>"</a>
     <a href="examen/tienda/index.php">tienda</a>">ficheros/index</a>"</a>
     <a href="examen/fruteria/index.php">fruteria</a>">ficheros/index</a>"</a>
     <a href="examen/fruteria/listar_fruta.php">fruteria</a>">ficheros/index</a>"</a>
